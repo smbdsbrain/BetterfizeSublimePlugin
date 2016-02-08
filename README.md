@@ -1,0 +1,2 @@
+# BetterfizeSublimePlugin
+It's small sublime plugin which i made to make simplify work on one of my projects. It's clear some HTML tags and paste new lines after semicon and braces. Actually, it's first my own programm on python, and i realized, what python - the worst language ever. I can't hundle with spaces and tabs and even good text editor doesn't help me. Don't blame me, i know, it's not the best code. You can improve it.
