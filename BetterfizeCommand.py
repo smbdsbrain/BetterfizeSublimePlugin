@@ -1,11 +1,8 @@
 import sublime, sublime_plugin  
   
 class BetterfizeCommand(sublime_plugin.TextCommand):  
-    def run(self, view):  
-                # Get the selected text  
+    def run(self, view): 
                 s = self.view.substr(self.view.sel()[0])
-                # Transform it via rot13  
-                #s = s.encode('rot13')  
                 i = 0
                 while(i < len(s)):
                 	if(s[i - 1] == '<' and s[i] == '/'):
