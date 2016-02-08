@@ -1,8 +1,8 @@
 import sublime, sublime_plugin  
   
 class BetterfizeCommand(sublime_plugin.TextCommand):  
-    def run(self, view): 
-                s = self.view.substr(self.view.sel()[0])
+    def run(self, view):  
+                s = self.view.substr(self.view.sel()[0]) 
                 i = 0
                 while(i < len(s)):
                 	if(s[i - 1] == '<' and s[i] == '/'):
@@ -28,19 +28,35 @@ class BetterfizeCommand(sublime_plugin.TextCommand):
                         i += 1
                 i = 0
                 while(i < len(s)):
-                        if(i > 5 and i < len(s) - 1 
+                        if(i > 6 and i < len(s) - 1 
                             and ((s[i] == ';' 
                             and s[i - 5: i + 1] != "&nbsp;" 
-                            and s[i - 3: i + 1] != "&lt;" 
+                            and s[i - 3: i + 1] != "&lt;"
+                            and s[i - 3: i + 1] != "&gt;" 
                             and s[i - 6: i + 1] != "&Prime;" 
                             and s[i - 5: i + 1] != "&#010;"
                             and s[i - 5: i + 1] != "&#060;"
                             and s[i - 5: i + 1] != "&#062;"
                             and s[i - 5: i + 1] != "&#034;"
-                            and s[i - 5: i + 1] != "&quot;") or s[i] == '{' or s[i] == '}')
+                            and s[i - 5: i + 1] != "&quot;"
+                            and s[i - 4: i + 1] != "&amp;"
+                            and s[i - 6: i + 1] != "&ndash;")
+                            or s[i] == '{' or s[i] == '}'
+                            or s[i - 4: i + 1] == "begin"
+                            or s[i - 4: i + 1] == "BEGIN"
+                            or s[i - 3: i + 1] == "then"
+                            or s[i - 3: i + 1] == "else"
+                            or s[i - 1: i + 1] == "do")
                             ):
 
                             s = s[0:i + 1] + "&#010;" + s[i + 1:len(s)];
                             i += 5
                         i += 1
                 self.view.replace(view, self.view.sel()[0], s)
+
+
+                
+
+
+
+
