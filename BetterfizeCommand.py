@@ -9,20 +9,20 @@ class BetterfizeCommand(sublime_plugin.TextCommand):
                             print('found at', i)
                             j = 0
                             j = i
-                            while(s[j] != '>'):
+                            while(j < len(s) and s[j] != '>'):
                                 j += 1
 
                             k = 0
                             k = j+1
-                            while(s[k] != '<'):
+                            while(k < len(s) and s[k] != '<'):
                                 k += 1
                             m = 0
                             m = k + 1
 
-                            while(s[m] != '>'):
+                            while(m < len(s) and s[m] != '>'):
                                 m += 1;
 
-                            if(s[i + 1 : j] ==  s[k+1:m] and s[i + 1 : j] != 'td'):
+                            if(k < len(s) and m < len(s) and j < len(s) and s[i + 1 : j] ==  s[k+1:m] and s[i + 1 : j] != 'td'):
                                 s = s[0:i - 1] + s[j + 1:k] + s[m + 1:len(s)]
                                 i = 0
                         i += 1
@@ -40,7 +40,11 @@ class BetterfizeCommand(sublime_plugin.TextCommand):
                             and s[i - 5: i + 1] != "&#034;"
                             and s[i - 5: i + 1] != "&quot;"
                             and s[i - 4: i + 1] != "&amp;"
-                            and s[i - 6: i + 1] != "&ndash;")
+                            and s[i - 6: i + 1] != "&ndash;"
+                            and s[i - 6: i + 1] != "&laquo;"
+                            and s[i - 6: i + 1] != "&raquo;"
+                            and s[i - 6: i + 1] != "&ldquo;"
+                            and s[i - 6: i + 1] != "&rdquo;")
                             or s[i] == '{' or s[i] == '}'
                             or s[i - 4: i + 1] == "begin"
                             or s[i - 4: i + 1] == "BEGIN"
